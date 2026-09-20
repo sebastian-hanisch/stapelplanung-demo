@@ -1,5 +1,7 @@
 # Stapelplanung im Containerblock – Streamlit-Demo
 
+**[→ Demo live ausprobieren](https://sebastianhanisch-stapelplanung-demo.streamlit.app/)**
+
 Interaktive Fall-Demo zur **Einlagerung im Stapelblock eines Containerterminals**: Ein Container kommt an
 und muss in einen Stapel – aber **wann er abgeholt wird, weiß man nur ungefähr**. Liegt später ein früher
 abfahrender Container darunter, muss er beim Abholen erst **umgestapelt** werden, ein unproduktiver

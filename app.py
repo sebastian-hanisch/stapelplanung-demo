@@ -62,7 +62,7 @@ ab welcher Ungenauigkeit man ihm besser nicht mehr traut. Wie das Modell funktio
 
 st.caption("🎯 Schnellstart – ein Beispielszenario laden:")
 PRESET_HELP = {
-    "Perfekte Info": "Die Abfahrt jedes Containers ist exakt bekannt - wer sie nutzt, stapelt fast ohne Umstapeln.",
+    "Perfekte Info": "Die Abfahrt jedes Containers ist exakt bekannt - wer sie nutzt, braucht nur etwa ein Viertel bis ein Drittel der Umstapelungen der Zufallsregel (hier 26 gegen 103 bei 120 Containern; über 200 Seeds im Mittel 23 gegen 77).",
     "Realistisch": "Die Abfahrt ist nur auf etwa ein Viertel der Standzeit genau bekannt - der Vorsprung schrumpft, bleibt aber.",
     "Kaum brauchbar": "Die Schätzung liegt typisch mehr als eine Standzeit daneben - hier schlägt die simple Regel die schätzungsgläubige.",
     "Voller Block": "Der Block ist bis an die Grenze gefüllt - selbst mit exaktem Vorwissen bleibt viel Umstapeln.",

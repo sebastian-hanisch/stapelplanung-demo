@@ -92,8 +92,9 @@ def test_every_preset_loads_sets_the_widgets_and_syncs_the_address_bar(name):
     p = C.PRESETS[name]
     assert _settings(at) == dict(n_stacks_slider=p["n_stacks"], max_height_slider=p["max_height"], fill_slider=p["fill_pct"],
                                  n_containers_slider=p["n_containers"], sigma_slider=p["sigma_pct"], seed_input=p["seed"])
-    assert dict(at.query_params) == {"ns": [str(p["n_stacks"])], "mh": [str(p["max_height"])], "fp": [str(p["fill_pct"])],
-                                     "nc": [str(p["n_containers"])], "sg": [str(p["sigma_pct"])], "seed": [str(p["seed"])]}
+    qp = {k: (v[0] if isinstance(v, list) else v) for k, v in dict(at.query_params).items()}  # Streamlit >= 1.65: str statt list
+    assert qp == {"ns": str(p["n_stacks"]), "mh": str(p["max_height"]), "fp": str(p["fill_pct"]),
+                  "nc": str(p["n_containers"]), "sg": str(p["sigma_pct"]), "seed": str(p["seed"])}
 
 
 def test_randomize_button_changes_only_the_seed():

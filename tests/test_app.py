@@ -11,9 +11,11 @@ from streamlit.testing.v1 import AppTest
 import stk_constants as C
 
 APP_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "app.py")
-FOOTER = ("Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – "
-          "Operations Research und Machine Learning. Interesse an einer maßgeschneiderten Lösung für "
-          "Ihr Unternehmen? [Kontakt aufnehmen](https://sebastianhanisch.net/kontakt.html)")
+FOOTER = (
+    "Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – "
+    "Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). "
+    "Mehr zum Thema: [Hafenlogistik optimieren](https://sebastianhanisch.net/hafenlogistik-optimierung.html)."
+)
 SCENARIO_KEYS = ["n_stacks_slider", "max_height_slider", "fill_slider", "n_containers_slider", "sigma_slider", "seed_input"]
 
 

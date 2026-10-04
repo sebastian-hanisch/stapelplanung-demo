@@ -410,8 +410,8 @@ denn jeder solche Container muss mindestens einmal umgestapelt werden. Das erste
 Zeitlimit liefert das zuletzt begonnene Budget eine bewiesene untere Schranke, ein Bestfit-Lauf mit wahren Abfahrten die obere.
 
 **Einsicht:** Kommen alle Container vor der ersten Abholung, ist eine Belegung ohne Umstapeln genau dann möglich, wenn sich die
-Ankunftsfolge (nach Abfahrt geordnet) in höchstens $S$ fallende Teilfolgen zerlegen lässt, also die längste steigende Teilfolge
-höchstens $S$ lang ist. Im verschränkten Ablauf dieser Demo gilt das nicht so einfach.
+Ankunftsfolge (nach Abfahrt geordnet) in höchstens $S$ fallende Teilfolgen der Länge höchstens $H$ zerlegen lässt; ohne Höhengrenze
+genau dann, wenn die längste steigende Teilfolge höchstens $S$ lang ist. Im verschränkten Ablauf dieser Demo gilt das nicht so einfach.
 
 Implementiert in `stk_exact.py` (Suche), `stk_rules.py` (Regeln) und `stk_simulation.py` (Ablauf).
         """
@@ -421,6 +421,6 @@ st.markdown("---")
 
 st.caption(
     "Diese Demo ist Teil des Portfolios von [Sebastian Hanisch](https://sebastianhanisch.net) – "
-    "Operations Research und Machine Learning. Interesse an einer maßgeschneiderten Lösung für "
-    "Ihr Unternehmen? [Kontakt aufnehmen](https://sebastianhanisch.net/kontakt.html)"
+    "Operations Research und Machine Learning ([Über mich](https://sebastianhanisch.net/ueber-mich.html)). "
+    "Mehr zum Thema: [Hafenlogistik optimieren](https://sebastianhanisch.net/hafenlogistik-optimierung.html)."
 )

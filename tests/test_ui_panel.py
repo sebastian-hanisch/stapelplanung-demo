@@ -43,8 +43,8 @@ def test_metrics_values_and_delta_direction():
     assert labels == ["Umstapelungen", "pro Container", "Abholungen mit Umstapelung", "Höchster Stapel"] * 4
     moves = [m for m in at.metric if m.label == "Umstapelungen"]
     # Reihenfolge der Tabs: Zufällig, Niedrigster Stapel (Alltagsregel), Bestfit, Unsicherheits-bewusst; feste Werte aus der Messreihe
-    assert [m.value for m in moves] == ["20", "6", "5", "2"]
-    assert [m.delta for m in moves] == ["+14", "", "-1", "-4"]
+    assert [m.value for m in moves] == ["20", "6", "5", "0"]
+    assert [m.delta for m in moves] == ["+14", "", "-1", "-6"]
     # delta_color="inverse": MEHR Umstapelungen als die Alltagsregel = rot, weniger = grün
     assert [_color(m) for m in moves] == ["RED", "GRAY", "GREEN", "GREEN"]
     per = [m for m in at.metric if m.label == "pro Container"]

@@ -68,7 +68,8 @@ def make_aware_rule(sigma_abs):
             s = stacks[i]
             if s:
                 top = est[s[-1]]
-                p = 0.5 * (1 + math.erf((e_own - top) / (sig * math.sqrt(2))))
+                # Phi(d / (sig * sqrt 2)) = 0.5 * (1 + erf(d / (2 * sig)))
+                p = 0.5 * (1 + math.erf((e_own - top) / (2 * sig)))
             else:
                 top, p = INF, 0.0
             key = (round(p, C.AWARE_P_DECIMALS), top if p < C.AWARE_TIGHTFIT_BELOW_P else len(s), i)

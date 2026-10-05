@@ -13,12 +13,12 @@ Anteil Seeds: bestfit < lowest 100% | lowest < bestfit 0% | aware <= beide 20% |
 Verhaeltnis zufaellig/bestfit: Median 3.5, 10%-Quantil 2.3, 90%-Quantil 8.8
 
 ### Realistisch  {'n_stacks': 6, 'max_height': 5, 'fill_pct': 80, 'n_containers': 120, 'sigma_pct': 25, 'seed': 7}
-Mittel Umstapelungen: {'Zufällig': 89.5, 'Niedrigster Stapel': 73.3, 'Bestfit': 51.5, 'Unsicherheits-bewusst': 56.2}
-Anteil Seeds: bestfit < lowest 94% | lowest < bestfit 4% | aware <= beide 42% | zufaellig >= 2.5x bestfit 6% | bestfit pro Container >= 0.4 62%
+Mittel Umstapelungen: {'Zufällig': 89.5, 'Niedrigster Stapel': 73.3, 'Bestfit': 51.5, 'Unsicherheits-bewusst': 56.7}
+Anteil Seeds: bestfit < lowest 94% | lowest < bestfit 4% | aware <= beide 36% | zufaellig >= 2.5x bestfit 6% | bestfit pro Container >= 0.4 62%
 Verhaeltnis zufaellig/bestfit: Median 1.8, 10%-Quantil 1.4, 90%-Quantil 2.3
 
 ### Kaum brauchbar  {'n_stacks': 6, 'max_height': 5, 'fill_pct': 60, 'n_containers': 120, 'sigma_pct': 150, 'seed': 7}
-Mittel Umstapelungen: {'Zufällig': 86.6, 'Niedrigster Stapel': 60.7, 'Bestfit': 75.0, 'Unsicherheits-bewusst': 58.1}
+Mittel Umstapelungen: {'Zufällig': 86.6, 'Niedrigster Stapel': 60.7, 'Bestfit': 75.0, 'Unsicherheits-bewusst': 58.4}
 Anteil Seeds: bestfit < lowest 8% | lowest < bestfit 90% | aware <= beide 62% | zufaellig >= 2.5x bestfit 0% | bestfit pro Container >= 0.4 96%
 Verhaeltnis zufaellig/bestfit: Median 1.2, 10%-Quantil 0.9, 90%-Quantil 1.4
 
@@ -82,6 +82,6 @@ typischste Seeds (Optimum >= 2, Bestfit > Optimum, Ausgleich > Bestfit, < 3 s):
 - **Seed 7** für die vier σ-Presets (bis dahin 3): typisch (Abstand 0,87 zum Median, der niedrigste unter den rauschstabilen Kandidaten) und stabil (Preset 2: 100 %, Preset 3: 95 % der Rausch-Ziehungen). Der frühere Seed 3 war typisch, aber nicht rauschstabil: Bei Preset „Realistisch“ gewann Bestfit nur in 75 % der Rausch-Ziehungen.
 - **Standard-Seed = 7**, damit die Startseite dem Preset „Realistisch“ entspricht.
 - **Seed 30** für „Kleiner Block“ (bis dahin 4): Optimum 3, Bestfit 9, Ausgleich 16, Verhältnis 3,0 (Mittel über 100 Seeds: 2,94), in 0,04 s exakt gelöst. Seed 4 hatte nur das Verhältnis 1,75.
-- **Korrigierte Kriterien** (Plan, Abschnitt 7): (a) „Unsicherheits-bewusst ≤ beide“ bei „Kaum brauchbar“ gilt nur in 62 % der Seeds und wurde gestrichen (im Mittel ist die Regel dort trotzdem am besten: 58,1 gegen 60,7 und 75,0); (b) „Voller Block: Bestfit ≥ 0,4 pro Container“ war ein Wert von N=200 – bei N=120 sind es im Mittel 0,36 (46 % der Seeds ≥ 0,4). Neues Kriterium: ≥ 1,5× die Umstapelungen des 80-%-Blocks (gemessen 1,85×) und ≥ 0,25 pro Container.
+- **Korrigierte Kriterien** (Plan, Abschnitt 7): (a) „Unsicherheits-bewusst ≤ beide“ bei „Kaum brauchbar“ gilt nur in 62 % der Seeds und wurde gestrichen (im Mittel ist die Regel dort trotzdem am besten: 58,4 gegen 60,7 und 75,0); (b) „Voller Block: Bestfit ≥ 0,4 pro Container“ war ein Wert von N=200 – bei N=120 sind es im Mittel 0,36 (46 % der Seeds ≥ 0,4). Neues Kriterium: ≥ 1,5× die Umstapelungen des 80-%-Blocks (gemessen 1,85×) und ≥ 0,25 pro Container.
 - **Kipppunkt hängt vom Durchsatz ab:** bei N=120 und Füllgrad 60 % liegt er bei 56 % (in der Planmessung mit N=200: 75 %). Die App rechnet ihn live.
 - Was jedes Preset in der Oberfläche zeigt (Seed 7 bzw. 30): Perfekte Info: Bestfit spart 70 %; Realistisch: 31 %; Kaum brauchbar: der Ausgleich ist die beste Regel, Urteil „kippt“, Kipppunkt 56 %; Voller Block: 59 % (beste Regel: Unsicherheits-bewusst, 40 gegen 41); Kleiner Block: 50 %, Optimum 3.

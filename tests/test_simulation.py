@@ -36,10 +36,10 @@ def test_hand_case_two_blockers_land_together():
 
 # ---------- Referenzwerte aus der Messreihe ----------
 PINS = {
-    (6, 5, 0.8, 60, 1, 0.25): dict(n_events=120, dwell=9.3, zufaellig=20, niedrigster_stapel=6, bestfit=5, unsicherheitsbewusst=2),
+    (6, 5, 0.8, 60, 1, 0.25): dict(n_events=120, dwell=9.3, zufaellig=20, niedrigster_stapel=6, bestfit=5, unsicherheitsbewusst=0),
     (4, 4, 1.0, 30, 0, 0.0): dict(n_events=60, dwell=5.133333, zufaellig=7, niedrigster_stapel=2, bestfit=0, unsicherheitsbewusst=0),
     (3, 3, 1.0, 14, 2, 0.5): dict(n_events=28, dwell=6.285714, zufaellig=6, niedrigster_stapel=4, bestfit=2, unsicherheitsbewusst=1),
-    (5, 4, 0.6, 50, 7, 1.0): dict(n_events=100, dwell=15.24, zufaellig=41, niedrigster_stapel=19, bestfit=26, unsicherheitsbewusst=15),
+    (5, 4, 0.6, 50, 7, 1.0): dict(n_events=100, dwell=15.24, zufaellig=41, niedrigster_stapel=19, bestfit=26, unsicherheitsbewusst=13),
     (6, 5, 1.0, 80, 3, 0.1): dict(n_events=160, dwell=11.875, zufaellig=23, niedrigster_stapel=11, bestfit=4, unsicherheitsbewusst=2),
 }
 

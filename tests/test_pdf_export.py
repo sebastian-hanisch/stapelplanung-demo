@@ -82,9 +82,9 @@ def test_pdf_table_has_a_row_per_rule_with_the_measured_numbers_and_signed_delta
     header = texts.index("Differenz")
     rows = [texts[header + 1 + 6 * i: header + 7 + 6 * i] for i in range(4)]
     assert [r[0] for r in rows] == [C.RULE_LABELS[k] for k in C.RULE_KEYS]
-    assert [r[1] for r in rows] == ["121", "94", "65", "81"]                   # feste Werte (Seed 7)
-    assert [r[5] for r in rows] == ["+27", "0", "-29", "-13"]                  # meine Regel minus Alltagsregel (94)
-    assert [r[2] for r in rows] == ["1.01", "0.78", "0.54", "0.68"]
+    assert [r[1] for r in rows] == ["121", "94", "65", "85"]                   # feste Werte (Seed 7)
+    assert [r[5] for r in rows] == ["+27", "0", "-29", "-9"]                  # meine Regel minus Alltagsregel (94)
+    assert [r[2] for r in rows] == ["1.01", "0.78", "0.54", "0.71"]
 
 
 def test_pdf_contains_no_dash_or_euro_that_would_have_crashed_the_font():

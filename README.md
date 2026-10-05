@@ -5,18 +5,18 @@
 Interaktive Fall-Demo zur **Einlagerung im Stapelblock eines Containerterminals**: Ein Container kommt an
 und muss in einen Stapel – aber **wann er abgeholt wird, weiß man nur ungefähr**. Liegt später ein früher
 abfahrender Container darunter, muss er beim Abholen erst **umgestapelt** werden, ein unproduktiver
-Kranhub. Die Demo vergleicht vier Einlagerungsregeln, von „irgendwohin" bis zu einer Regel, die der
+Kranhub. Die Demo vergleicht vier Einlagerungsregeln, von „irgendwohin“ bis zu einer Regel, die der
 **Abfahrtsschätzung** traut, und beantwortet die Frage: **Was ist Vorwissen über die Abfahrt wert, und ab
 welcher Ungenauigkeit sollte man ihm besser nicht mehr trauen?**
 
-Teil des Portfolios für die Website „Sebastian Hanisch – Operations Research und Machine Learning",
+Teil des Portfolios für die Website „Sebastian Hanisch – Operations Research und Machine Learning“,
 Welle 1 der Hafen-Linie (neben `berth-allocation-demo`, `quaycrane-demo`, `truck-appointment-demo` und
 `yard-demo`): dort Kai, Kran, Gate und Hof, hier eine Ebene tiefer im Stapelblock des Yards.
 
 ## Warum dieses Problem
 
 Umstapeln ist im Yard eine der Kernentscheidungen (Blocks Relocation Problem). Die übliche Frage lautet
-„wie stapele ich optimal um?". Hier steht die Entscheidung *davor* im Mittelpunkt: **wohin beim
+„wie stapele ich optimal um?“. Hier steht die Entscheidung *davor* im Mittelpunkt: **wohin beim
 Einlagern**, wenn die Abfahrtszeit nur geschätzt ist. Das trennt zwei Aussagen sauber, die in der Praxis
 gern vermischt werden: wie viel eine gute Schätzung bringt, und dass eine schlechte Schätzung schlechter sein
 kann als gar keine.
@@ -29,8 +29,8 @@ Container). Die gleichzeitige Belegung ist auf `Füllgrad × (S − 1) × H` beg
 zum Umstapeln frei, denn bei Belegung bis `(S − 1)·H + 1` finden die Container über einem Ziel immer
 Ausweichplätze (Beweisskizze in der App). Beim Abholen werden nur die Container **über dem Ziel** umgestapelt,
 jeder Hub zählt als eine Umstapelung. Die Regel sieht beim Einlagern nur eine **Schätzung** der Abfahrt: die
-wahre Abfahrt plus Gauß-Rauschen, dessen Größe der Regler „Schätzfehler" in Bruchteilen der mittleren
-Standzeit vorgibt. Formal im Expander „📐 Mathematische Formulierung".
+wahre Abfahrt plus Gauß-Rauschen, dessen Größe der Regler „Schätzfehler“ in Bruchteilen der mittleren
+Standzeit vorgibt. Formal im Expander „📐 Mathematische Formulierung“.
 
 ## Methodik – vier Regeln und ein Referenzlöser
 
@@ -41,7 +41,7 @@ Standzeit vorgibt. Formal im Expander „📐 Mathematische Formulierung".
   spätesten obersten Abfahrt. Sie vertraut der Schätzung.
 - **Unsicherheits-bewusst**: wie Bestfit, nutzt aber die Größe des Schätzfehlers und wählt den Stapel mit der
   kleinsten Blockierwahrscheinlichkeit `P = Φ((ê − ê_oben) / (σ·D̄·√2))`.
-- **Optimum mit Hellsehen** (Tab „Exakt"): exakte IDA\*-artige Suche über alle Einlagerungs- und
+- **Optimum mit Hellsehen** (Tab „Exakt“): exakte IDA\*-artige Suche über alle Einlagerungs- und
   Umstapelentscheidungen, mit wahren Abfahrten **und bekannter Ankunftsfolge**. Es ist eine **untere
   Schranke** für jede Online-Regel und nicht erreichbar.
 
@@ -70,7 +70,7 @@ Alle Zahlen stammen aus Simulationen mit diesem Code; die Abstimmung steht repro
 - **Ein Block**, keine Fahrzeiten und Kranwege, keine Gefahrgut-, Reefer- oder Gewichtsklassen.
 - **Exakt nicht überall.** Auf dem Standardblock (6×5, 120 Container) liefert der Exakt-Tab meist ein
   breites Intervall statt eines Werts. Er zeigt dann die bewiesene untere und die obere Schranke und **nie**
-  einen unbewiesenen Wert als „Optimum", plus einen Knopf, der einen exakt lösbaren Block lädt.
+  einen unbewiesenen Wert als „Optimum“, plus einen Knopf, der einen exakt lösbaren Block lädt.
 - Alle Zahlen sind **Größenordnungen aus einer Simulation, keine Messung an Echtdaten.**
 
 ## Design-Entscheidungen und Funde
@@ -80,13 +80,13 @@ welche Regel eingelagert hat. So misst der Vergleich nur die Einlagerungsentsche
 einheitlichem Umstapeln bleibt das Muster gleich, die unsicherheits-bewusste Regel ist sogar gleich gut oder
 besser als mit eigener Umstapel-Logik.
 
-**Das Urteil im Kernabschnitt kennt drei Zustände.** „Lohnt sich", „kippt" und „kein klarer Unterschied": Ein
+**Das Urteil im Kernabschnitt kennt drei Zustände.** „Lohnt sich“, „kippt“ und „kein klarer Unterschied“: Ein
 Unterschied gilt nur als klar, wenn die **gepaarte Differenz** über dieselben Ereignisfolgen mehr als zwei
 Standardfehler beträgt. Lieber kein Urteil als eines, das im Rauschen liegt.
 
 **Der Exakt-Löser: Machbarkeitssuche mit Kindersortierung statt exaktem Minimalwert.** Die erste Fassung
 (memoisierte Suche ohne Schranke) war bei 4×4 mit 18 Containern für 30 Instanzen nach über 5 Minuten nicht fertig. Die
-Endfassung ist IDA\* mit der zulässigen unteren Schranke „Container über einem früher abfahrenden" (jeder muss
+Endfassung ist IDA\* mit der zulässigen unteren Schranke „Container über einem früher abfahrenden“ (jeder muss
 mindestens einmal umgestapelt werden), iterativer Vertiefung über das Budget, Kindern in Bestfit-Reihenfolge
 (Abbruch beim ersten Fund) und je Stapel gemerkter Schranke: **2,5- bis 11-mal schneller** bei identischem
 Ergebnis auf 200 Instanzen. Ein absteigender Machbarkeitslauf zur Verkleinerung der oberen Schranke brachte am
@@ -94,28 +94,36 @@ Standardblock nur 2–3 Umstapelungen bei rund 1,5 s je Schritt und wurde nicht 
 
 **Presets: typisch statt schön, und rauschstabil.** Seeds sind nicht nach dem schönsten Einzelfall gewählt,
 sondern nahe am Median mehrerer Merkmale über 200 Seeds, und die Aussage muss bei mindestens 90 % anderer
-Rausch-Ziehungen halten. Der zuerst gewählte Seed 3 war typisch, aber **nicht rauschstabil**: Bei „Realistisch"
+Rausch-Ziehungen halten. Der zuerst gewählte Seed 3 war typisch, aber **nicht rauschstabil**: Bei „Realistisch“
 gewann Bestfit nur in 75 % der Rausch-Ziehungen, ein Glückstreffer. Außerdem hielten zwei Plankriterien aus
-einer Messung mit 200 Containern bei 120 Containern nicht („Unsicherheits-bewusst ≤ beide" gilt nur in 62 % der
-Seeds; „Bestfit ≥ 0,4 pro Container" nur in 46 %) und wurden an der Grundgesamtheit korrigiert.
+einer Messung mit 200 Containern bei 120 Containern nicht („Unsicherheits-bewusst ≤ beide“ gilt nur in 62 % der
+Seeds; „Bestfit ≥ 0,4 pro Container“ nur in 46 %) und wurden an der Grundgesamtheit korrigiert.
 
-**Fund: ein Preset außerhalb der Reglergrenzen.** Das Preset „Kleiner Block" setzte zuerst 30 Container bei
+**Fund: ein Preset außerhalb der Reglergrenzen.** Das Preset „Kleiner Block“ setzte zuerst 30 Container bei
 einer Reglerunterkante von 40. Streamlit warf eine Ausnahme; der End-to-End-Test fing sie sofort. Seitdem
 prüft ein Test alle Presets gegen die Grenzen und die Schrittweite.
 
+**Fund der Orakel-Prüfung: Blockierwahrscheinlichkeit mit falschem Nenner.** Ein unabhängiger Simulator mit `scipy.stats.norm.cdf`
+stimmte bei Zufalls-, Ausgleichs- und Bestfit-Regel in allen Läufen überein, bei der unsicherheits-bewussten Regel nicht: Der Code
+rechnete `Φ(Δ / σ)` statt der dokumentierten `Φ(Δ / (σ·√2))` (das `√2` stand im Argument von `erf`, wo es `Φ(Δ/σ)` ergibt). Der Fehler
+einer Differenz zweier verrauschter Schätzungen ist `σ·√2`; die Regel war also etwas zu selbstsicher. Behoben; das Muster bleibt (bei
+kleinem σ verliert die Regel gegen Bestfit, bei großem gewinnt sie), die Mittelwerte verschieben sich um höchstens etwa 3 Umstapelungen
+je 120 Container (Block 6×5, Füllgrad 80 %, σ = 25 %: 56,7 statt 56,2). Die Regel bleibt bei σ = 0 gleich. Die frühere Messung „mit
+eigener Umstapel-Logik“ (oben) stammt noch von vor der Korrektur.
+
 ## Tests
 
-`pytest tests/ -v` – 324 Tests, rund 33 s. Zusammensetzung:
+`pytest tests/ -v` – 328 Tests, rund 65 s. Zusammensetzung:
 
 - **Kern:** Ereignisfolge und Schätzung (feste Werte, Invarianten je Ereignis, unabhängiges Kontrollmodell), Regeln
   (Randfälle, Tie-Breaks), Simulation (Handfälle, 20 feste Referenzwerte aus der Messreihe).
 - **Exakt-Löser:** Handfälle, **unabhängige Vollaufzählung** als Gegenprobe auf 160 kleinen Instanzen, feste
-  Optima aus dem Messreihen-Code, „Optimum ≤ jede Regel", das Intervall wird mit mehr Rechenzeit nie schlechter,
+  Optima aus dem Messreihen-Code, „Optimum ≤ jede Regel“, das Intervall wird mit mehr Rechenzeit nie schlechter,
   kein Rekursionsfehler bei 600 Ereignissen, Aufrufzahl als Regressionsschutz.
 - **Auswertung, Figuren, Panel:** σ-Kurve reproduziert die Messwerte, Geometrieprüfung der Blockansicht (keine
   Überlappungen, Beschriftung im Container), Kennzahlen-Farben am Streamlit-Proto.
 - **Presets:** je Preset ein Test am gewählten Seed, an 20 Rausch-Ziehungen und im Mittel über 60 Seeds.
-- **PDF:** Inhalt zeilenweise, genaue Sonderzeichen (fpdf2 stürzt bei „–" und „€" ab).
+- **PDF:** Inhalt zeilenweise, genaue Sonderzeichen (fpdf2 stürzt bei „–“ und „€“ ab).
 - **End-to-End (AppTest):** Skelett und Footer, jedes Preset, Permalink, alle Regler an Min und Max, Exakt-Tab
   (bewiesen, Intervall, veraltetes Ergebnis).
 

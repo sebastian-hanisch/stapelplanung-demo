@@ -60,6 +60,17 @@ ab welcher Ungenauigkeit man ihm besser nicht mehr traut. Wie das Modell funktio
 """
 )
 
+# erklaerseite:einfach:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/containerstapel-erklaert.json, nicht von Hand ändern)
+with st.expander("💬 In einfachen Worten"):
+    st.markdown(
+        """
+Ein Container kommt in einem Containerblock an und muss auf einen von mehreren Stapeln. Wann er abgeholt wird, ist nur ungefähr bekannt. Liegt später ein früher abholbarer Container darunter, muss der obere beim Abholen erst weggehoben werden. Das ist ein Kranhub ohne Nutzen, eine Umstapelung. Die Demo vergleicht vier Regeln für die Wahl des Stapels. Eine wählt irgendeinen, eine gleicht die Stapelhöhen aus, eine vertraut der Schätzung der Abholzeit, und eine rechnet zusätzlich ein, wie ungenau die Schätzung ist. Sie sehen, wie viel genaues Wissen spart und ab welcher Ungenauigkeit man ihm besser nicht mehr traut. Zum Vergleich zeigt sie bei kleinen Blöcken das bewiesene Optimum mit Hellsehen.
+
+[Ausführlich und verständlich erklärt, mit Fachteil](https://sebastianhanisch.net/containerstapel-erklaert.html)
+        """
+    )
+# erklaerseite:einfach:end
+
 st.caption("🎯 Schnellstart – ein Beispielszenario laden:")
 PRESET_HELP = {
     "Perfekte Info": "Die Abfahrt jedes Containers ist exakt bekannt - wer sie nutzt, braucht nur etwa ein Viertel bis ein Drittel der Umstapelungen der Zufallsregel (hier 26 gegen 103 bei 120 Containern; über 200 Seeds im Mittel 23 gegen 77).",
@@ -372,6 +383,26 @@ er im Rauschen, steht dort "Kein klarer Unterschied".
     )
 
 with st.expander("📐 Mathematische Formulierung"):
+    # erklaerseite:lesehilfe:start (erzeugt von tools/set_demo_explainer.py (Website-Repo) aus tools/content/explainers/containerstapel-erklaert.json, nicht von Hand ändern)
+    st.markdown(
+        r"""
+**Lesehilfe.** Gegeben sind ein Block aus S Stapeln der Höhe H, Container, die in zufälliger Folge ankommen und wieder abgeholt werden, und für jeden Container eine mit Fehler behaftete Schätzung seiner Abholung. Gesucht ist, auf welchen Stapel jeder ankommende Container kommt, sodass beim Abholen möglichst wenige Container weggehoben werden müssen.
+
+| Symbol | Bedeutung |
+|---|---|
+| $S$, $H$ | Zahl der Stapel und größte Stapelhöhe des Blocks |
+| $a_i$, $d_i$ | Ankunft und Abholung von Container $i$, als Nummer in der Ereignisfolge |
+| $\varphi$ | Füllgrad: Anteil von $(S-1)\,H$, der gleichzeitig belegt sein darf |
+| $\hat d_i$, $\varepsilon_i$ | Schätzung der Abholung von Container $i$ und ihr Fehler |
+| $\sigma$, $\bar D$ | Schätzfehler als Bruchteil der mittleren Standzeit $\bar D$ |
+| $\text{top}(s)$ | geschätzte Abholung des obersten Containers von Stapel $s$ |
+| $P_s$ | Wahrscheinlichkeit, auf Stapel $s$ einen früher abgeholten Container zu blockieren |
+| $B_j$ | Container, die bei der Abholung $j$ weggehoben werden müssen |
+
+[Schritt für Schritt erklärt, mit Herleitung und Literatur](https://sebastianhanisch.net/containerstapel-erklaert.html#fachleute)
+        """
+    )
+    # erklaerseite:lesehilfe:end
     st.markdown(
         r"""
 **Stapelplanung mit Umstapelung** (Blocks Relocation Problem mit ankommenden Containern), NP-schwer im Allgemeinen.

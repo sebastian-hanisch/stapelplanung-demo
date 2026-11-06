@@ -56,7 +56,7 @@ def test_default_load_has_no_exception_and_follows_the_portfolio_skeleton():
     assert [h.value for h in at.sidebar.header] == ["⚙️ Einstellungen"]                 # genau EIN Header in der Seitenleiste
     assert [b.label for b in at.button[:5]] == list(C.PRESETS)                           # Presets im Hauptbereich, vor allem anderen
     assert at.button[-1].label == "🎲 Neuen Block generieren"                             # letztes Element der Seitenleiste
-    assert [e.label for e in at.expander] == ["🔧 Wie wir das erreichen – vollständiger Methodenvergleich",
+    assert [e.label for e in at.expander] == ["💬 In einfachen Worten", "🔧 Wie wir das erreichen – vollständiger Methodenvergleich",
                                               "Wie funktioniert diese Demo?", "📐 Mathematische Formulierung"]
     assert [s.value for s in at.subheader] == ["📐 Was ist die Abfahrtsinformation wert?"]
     assert any(m.value.startswith("## 🎯") for m in at.markdown)
